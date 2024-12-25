@@ -10,3 +10,8 @@ export const showRoomID = atom({
     key:"showRoomID",
     default:false
 })
+
+export const roomId = atom({
+    key:"roomId",
+    default:""
+})

@@ -1,6 +1,10 @@
+import { useRecoilValue } from "recoil"
 import { ChatBubble } from "./ui/ChatBubble"
+import { roomId } from "../atoms"
 
 export const Chats = ()=>{
+    const roomNo = useRecoilValue(roomId)
+    
     return(
         <>
             <div className="flex flex-col">

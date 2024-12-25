@@ -1,15 +1,28 @@
 import { createRoomId } from "../utils"
-import { showRoomID } from "../atoms"
+import { isRoomEntered, roomId, showRoomID } from "../atoms"
 import { useRecoilState, useSetRecoilState } from "recoil"
+import { useRef } from "react"
+import { Button } from "./ui/Button"
+
 export const CreateRoomComponent = ()=>{
 
     const [showId,setShowID] = useRecoilState(showRoomID)
+    const setRoomId = useSetRecoilState(roomId)
+    const setIsRoomEntered = useSetRecoilState(isRoomEntered)
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const handleShowRoomID = ()=>{
         setShowID(false)
 
         setTimeout(()=>setShowID(true),1000)
     }
+
+    const hanldeJoinRoom = ()=>{
+        if(inputRef.current)
+        setRoomId(inputRef.current.value)
+        setIsRoomEntered(true)
+    }
+    
     return(
         <>
             <div className="w-[700px]  bg-[#191919] border border-[#D3D3D3] border-opacity-40 rounded-lg">
@@ -17,10 +30,7 @@ export const CreateRoomComponent = ()=>{
                 <h1 className="font-montserrat font-black text-3xl text-white m-4" >
                         Whisper.io
                 </h1>
-                <button onClick={handleShowRoomID}
-                 className="w-[95%] bg-white text-black font-montserrat font-medium p-2 m-4 text-2xl hover:bg-slate-200 transition-all ease-in-out rounded-lg">
-                    Create Room
-                </button>
+                <Button text="Create Room" onClick={handleShowRoomID} loading={!showId}/>
                 {
                     showId &&
 
@@ -40,8 +50,10 @@ export const CreateRoomComponent = ()=>{
 
 
                 <div className="flex m-4 justify-between mt-8">
-                <input type="text" placeholder="Enter Room ID" className="w-4/5 h-12 bg-black  text-white  border border-[#D3D3D3] border-opacity-40 rounded-lg"/>
-                <button className="bg-black text-white px-4 py-2 rounded-lg  border border-[#D3D3D3] border-opacity-40 ml-4 hover:bg-gray-800 transition-all ease-in-out duration-500">
+                <input ref={inputRef}
+                 type="text" placeholder="Enter Room ID" className="w-4/5 h-12 bg-black  text-white  border border-[#D3D3D3] border-opacity-40 rounded-lg"/>
+                <button onClick={hanldeJoinRoom}
+                className="bg-black text-white px-4 py-2 rounded-lg  border border-[#D3D3D3] border-opacity-40 ml-4 hover:bg-gray-800 transition-all ease-in-out duration-500">
                     Join Room
                 </button>
             </div>
