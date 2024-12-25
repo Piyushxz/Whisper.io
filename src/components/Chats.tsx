@@ -10,9 +10,19 @@ export const Chats = ()=>{
                     </h1>
                 </div>
 
-                <div className="h-[55vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black">
-                    <div className="m-6">
+                <div className="h-[55vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black overflow-y-auto">
+                    <div className="m-6 flex flex-col">
+                      
                     <ChatBubble text={"hey there"} variant="sender"/>
+              
+                    <ChatBubble text={"hey there"} variant="sender"/>
+                    <ChatBubble text={"hey there"} variant="user"/>
+                    <ChatBubble text={"hey there"} variant="sender"/>
+                    <ChatBubble text={"hey there"} variant="user"/>
+                    <ChatBubble text={"hey there"} variant="sender"/>
+                    <ChatBubble text={"hey there"} variant="user"/>
+                    <ChatBubble text={"hey there"} variant="sender"/>
+                    <ChatBubble text={"hey there"} variant="user"/>
 
                     </div>
                 </div>
