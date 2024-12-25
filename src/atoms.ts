@@ -15,3 +15,10 @@ export const roomId = atom({
     key:"roomId",
     default:""
 })
+
+
+
+export const wsState = atom<WebSocket | null>({
+    key: "wsState",
+    default: null, 
+});

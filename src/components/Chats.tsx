@@ -1,10 +1,32 @@
-import { useRecoilValue } from "recoil"
+import { useRecoilValue, useSetRecoilState } from "recoil"
 import { ChatBubble } from "./ui/ChatBubble"
-import { roomId } from "../atoms"
+import { roomId, wsState } from "../atoms"
+import { useEffect,useRef } from "react"
 
 export const Chats = ()=>{
     const roomNo = useRecoilValue(roomId)
+    const wsStateVal = useSetRecoilState(wsState)
     
+    
+    useEffect(()=>{
+        (async ()=>{
+            const ws = new WebSocket('ws://localhost:8080')
+            wsStateVal(ws)
+            
+            ws.onopen=()=>{
+                ws.send(JSON.stringify({
+                    type:"join",
+                    payload:{
+                        roomId:roomNo
+                    }
+                }))
+            }
+
+
+        })
+        ()
+    }
+    ,[])
     return(
         <>
             <div className="flex flex-col">

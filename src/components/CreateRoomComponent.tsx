@@ -1,7 +1,7 @@
 import { createRoomId } from "../utils"
 import { isRoomEntered, roomId, showRoomID } from "../atoms"
 import { useRecoilState, useSetRecoilState } from "recoil"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { Button } from "./ui/Button"
 
 export const CreateRoomComponent = ()=>{
@@ -9,13 +9,18 @@ export const CreateRoomComponent = ()=>{
     const [showId,setShowID] = useRecoilState(showRoomID)
     const setRoomId = useSetRecoilState(roomId)
     const setIsRoomEntered = useSetRecoilState(isRoomEntered)
+    const [isLoading,setIsLoading] = useState(false)
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const handleShowRoomID = ()=>{
-        setShowID(false)
-
-        setTimeout(()=>setShowID(true),1000)
-    }
+    const handleShowRoomID = () => {
+        setIsLoading(true); 
+        setShowID(false);   
+    
+        setTimeout(() => {
+            setShowID(true);  
+            setIsLoading(false); 
+        }, 1000);
+    };
 
     const hanldeJoinRoom = ()=>{
         if(inputRef.current)
@@ -30,7 +35,7 @@ export const CreateRoomComponent = ()=>{
                 <h1 className="font-montserrat font-black text-3xl text-white m-4" >
                         Whisper.io
                 </h1>
-                <Button text="Create Room" onClick={handleShowRoomID} loading={!showId}/>
+                <Button text="Create Room" onClick={handleShowRoomID} loading={isLoading}/>
                 {
                     showId &&
 
