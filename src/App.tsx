@@ -1,12 +1,18 @@
 import { Chatbox } from "./components/Chatbox"
-
+import { isRoomEntered } from "./atoms"
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
+import { CreateRoomComponent } from "./components/CreateRoomComponent"
 
 function App() {
 
+
+  const roomEntered = useRecoilValue(isRoomEntered)
   return (
     <>
       <div className='h-screen bg-black flex justify-center items-center'>
-          <Chatbox/>
+        {
+          roomEntered ? <Chatbox/> :<CreateRoomComponent/>
+        }
       </div>
     </>
   )

@@ -16,7 +16,7 @@ interface ChatBubbleProps {
             <span
                 className={`${
                 ChatBubbleStyles[props.variant]
-                } px-4 py-2 rounded-lg shadow-md  text-sm  inline-block`}
+                } px-4 py-2 rounded-lg shadow-md  text-sm  inline-block font-montserrat`}
             >
                 {props.text}
             </span>
