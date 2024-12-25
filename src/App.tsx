@@ -1,6 +1,6 @@
 import { Chatbox } from "./components/Chatbox"
 import { isRoomEntered } from "./atoms"
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
+import { useRecoilValue } from "recoil"
 import { CreateRoomComponent } from "./components/CreateRoomComponent"
 
 function App() {
