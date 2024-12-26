@@ -4,15 +4,15 @@ interface ChatBubbleProps {
   }
   
   const ChatBubbleStyles = {
-    user: "bg-white text-black ",
-    sender: "bg-[#0866ff] text-white ",
+    user: " bg-[#0866ff] text-white",
+    sender: " bg-white text-black ",
   };
 
 
   
   export const ChatBubble = (props: ChatBubbleProps) => {
     return (
-        <div className={`flex py-1 ${props.variant ==="user" ?" justify-end " :" justify-start"}`}>
+        <div  className={`flex py-1 ${props.variant ==="user" ?" justify-end " :" justify-start"}`}>
             <span
                 className={`${
                 ChatBubbleStyles[props.variant]

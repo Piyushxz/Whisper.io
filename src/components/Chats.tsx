@@ -8,7 +8,7 @@ export const Chats = ()=>{
     const wsStateVal = useSetRecoilState(wsState)
     const [messages,setMessages] = useState([{message:"hey",sentBy:"abc"}])
     const currentUser = useRecoilValue(activeUser)
-    
+    const chatContainerRef = useRef<HTMLDivElement>(null)
     useEffect(()=>{
         (async ()=>{
             const ws = new WebSocket('ws://localhost:8080')
@@ -18,7 +18,8 @@ export const Chats = ()=>{
                 ws.send(JSON.stringify({
                     type:"join",
                     payload:{
-                        roomId:roomNo
+                        roomId:roomNo,
+                        username:currentUser
                     }
                 }))
             }
@@ -43,6 +44,12 @@ export const Chats = ()=>{
         ()
     }
     ,[])
+    useEffect(()=>{
+        if(chatContainerRef.current){
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+
+        }
+    },[messages])
 
     console.log(messages)
     return(
@@ -54,15 +61,22 @@ export const Chats = ()=>{
                     </h1>
                 </div>
 
-                <div className="h-[55vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black overflow-y-auto">
+                <div ref={chatContainerRef}
+                 className="h-[55vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black overflow-y-auto">
                     <div className="m-6 flex flex-col">
                     
                     {
                         messages.map(({message,sentBy})=>
                         sentBy === currentUser ?
-                        <ChatBubble text={message} variant="user"/>
+                        <div>
+                            <ChatBubble text={message} variant="user"/>
+
+                        </div>
                         :
-                        <ChatBubble text={message} variant="sender"/>
+                        <div>
+                            <ChatBubble text={message} variant="sender"/>
+
+                        </div>
                         )
                     }
 
