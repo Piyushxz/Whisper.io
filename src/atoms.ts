@@ -22,3 +22,8 @@ export const wsState = atom<WebSocket | null>({
     key: "wsState",
     default: null, 
 });
+
+export const activeUser = atom({
+    key:"activeUser",
+    default:null
+})

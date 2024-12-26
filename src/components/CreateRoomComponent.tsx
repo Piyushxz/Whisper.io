@@ -1,5 +1,5 @@
 import { createRoomId } from "../utils"
-import { isRoomEntered, roomId, showRoomID } from "../atoms"
+import { activeUser, isRoomEntered, roomId, showRoomID } from "../atoms"
 import { useRecoilState, useSetRecoilState } from "recoil"
 import { useRef, useState } from "react"
 import { Button } from "./ui/Button"
@@ -8,9 +8,11 @@ export const CreateRoomComponent = ()=>{
 
     const [showId,setShowID] = useRecoilState(showRoomID)
     const setRoomId = useSetRecoilState(roomId)
+    const setActiveUser = useSetRecoilState(activeUser)
     const setIsRoomEntered = useSetRecoilState(isRoomEntered)
     const [isLoading,setIsLoading] = useState(false)
     const inputRef = useRef<HTMLInputElement>(null);
+    const userRef = useRef<HTMLInputElement>(null);
 
     const handleShowRoomID = () => {
         setIsLoading(true); 
@@ -23,9 +25,13 @@ export const CreateRoomComponent = ()=>{
     };
 
     const hanldeJoinRoom = ()=>{
-        if(inputRef.current)
-        setRoomId(inputRef.current.value)
-        setIsRoomEntered(true)
+        if(inputRef.current ){
+            setRoomId(inputRef.current.value)
+            //@ts-ignore
+             setActiveUser(userRef.current.value) 
+            setIsRoomEntered(true)
+        }
+
     }
     
     return(
@@ -54,13 +60,18 @@ export const CreateRoomComponent = ()=>{
                 }
 
 
-                <div className="flex m-4 justify-between mt-8">
+                <div className="flex m-4 justify-between mt-8 flex-col gap-4">
+                <input ref={userRef}
+                 type="text" placeholder="Enter Username" className="w-[90vh] h-12 bg-black  text-white  border border-[#D3D3D3] border-opacity-40 rounded-lg"/>
+                <div>
                 <input ref={inputRef}
                  type="text" placeholder="Enter Room ID" className="w-4/5 h-12 bg-black  text-white  border border-[#D3D3D3] border-opacity-40 rounded-lg"/>
                 <button onClick={hanldeJoinRoom}
                 className="bg-black text-white px-4 py-2 rounded-lg  border border-[#D3D3D3] border-opacity-40 ml-4 hover:bg-gray-800 transition-all ease-in-out duration-500">
                     Join Room
                 </button>
+                </div>
+
             </div>
                 </div>
             </div>

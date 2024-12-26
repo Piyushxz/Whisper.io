@@ -1,13 +1,13 @@
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { ChatBubble } from "./ui/ChatBubble"
-import { roomId, wsState } from "../atoms"
+import { activeUser, roomId, wsState } from "../atoms"
 import { useEffect,useRef, useState } from "react"
 
 export const Chats = ()=>{
     const roomNo = useRecoilValue(roomId)
     const wsStateVal = useSetRecoilState(wsState)
-    const [messages,setMessages] = useState(["hey"])
-    
+    const [messages,setMessages] = useState([{message:"hey",sentBy:"abc"}])
+    const currentUser = useRecoilValue(activeUser)
     
     useEffect(()=>{
         (async ()=>{
@@ -23,16 +23,28 @@ export const Chats = ()=>{
                 }))
             }
 
-            ws.onmessage=(e)=>{
-                setMessages((prev)=>[...prev,e.data])
-            }
+            ws.onmessage = (e) => {
+                try {
+                    const data = JSON.parse(e.data);
+                    console.log(e)
+                    console.log(data)
+                    setMessages((prev) => [
+                        ...prev,
+                        { message: data.message, sentBy: data.sentBy }])
+                } catch (error) {
+                    console.error("Failed to parse WebSocket message:", error);
+                }
+        
+        }
 
             
-
+        return ()=> (ws.close())
         })
         ()
     }
     ,[])
+
+    console.log(messages)
     return(
         <>
             <div className="flex flex-col">
@@ -44,10 +56,14 @@ export const Chats = ()=>{
 
                 <div className="h-[55vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black overflow-y-auto">
                     <div className="m-6 flex flex-col">
-                      
-
+                    
                     {
-                        messages.map((message)=><ChatBubble text={message} variant="user"/>)
+                        messages.map(({message,sentBy})=>
+                        sentBy === currentUser ?
+                        <ChatBubble text={message} variant="user"/>
+                        :
+                        <ChatBubble text={message} variant="sender"/>
+                        )
                     }
 
                     </div>

@@ -1,19 +1,22 @@
 import { useRecoilValue } from "recoil"
-import { wsState } from "../atoms"
+import { activeUser, wsState } from "../atoms"
 import { useRef } from "react"
 
 export const Input = () =>{
     const inputRef = useRef<HTMLInputElement>(null)
+    const currentUser = useRecoilValue(activeUser)
     const wsVal = useRecoilValue(wsState)
     const handleSendMessage = () =>{
 
         wsVal?.send(JSON.stringify({
             type:"chat",
             payload:{
-                message:inputRef.current?.value
+                message:inputRef.current?.value,
+                sentBy:currentUser
             }
         }))
     }
+
     return(
         <>  
             <div className="flex mt-2">
