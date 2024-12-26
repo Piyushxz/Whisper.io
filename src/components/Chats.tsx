@@ -1,11 +1,12 @@
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { ChatBubble } from "./ui/ChatBubble"
 import { roomId, wsState } from "../atoms"
-import { useEffect,useRef } from "react"
+import { useEffect,useRef, useState } from "react"
 
 export const Chats = ()=>{
     const roomNo = useRecoilValue(roomId)
     const wsStateVal = useSetRecoilState(wsState)
+    const [messages,setMessages] = useState(["hey"])
     
     
     useEffect(()=>{
@@ -22,6 +23,11 @@ export const Chats = ()=>{
                 }))
             }
 
+            ws.onmessage=(e)=>{
+                setMessages((prev)=>[...prev,e.data])
+            }
+
+            
 
         })
         ()
@@ -39,16 +45,10 @@ export const Chats = ()=>{
                 <div className="h-[55vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black overflow-y-auto">
                     <div className="m-6 flex flex-col">
                       
-                    <ChatBubble text={"hey there"} variant="sender"/>
-              
-                    <ChatBubble text={"hey there"} variant="sender"/>
-                    <ChatBubble text={"hey there"} variant="user"/>
-                    <ChatBubble text={"hey there"} variant="sender"/>
-                    <ChatBubble text={"hey there"} variant="user"/>
-                    <ChatBubble text={"hey there"} variant="sender"/>
-                    <ChatBubble text={"hey there"} variant="user"/>
-                    <ChatBubble text={"hey there"} variant="sender"/>
-                    <ChatBubble text={"hey there"} variant="user"/>
+
+                    {
+                        messages.map((message)=><ChatBubble text={message} variant="user"/>)
+                    }
 
                     </div>
                 </div>
