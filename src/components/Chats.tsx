@@ -11,7 +11,8 @@ export const Chats = ()=>{
     const chatContainerRef = useRef<HTMLDivElement>(null)
     useEffect(()=>{
         (async ()=>{
-            const ws = new WebSocket('ws://localhost:8080')
+            const ws = new WebSocket('wss://chatappwebsockets.onrender.com')
+            console.log(ws)
             wsStateVal(ws)
             
             ws.onopen=()=>{
