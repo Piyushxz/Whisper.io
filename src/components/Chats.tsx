@@ -51,18 +51,33 @@ export const Chats = ()=>{
         }
     },[messages])
 
-    console.log(messages)
+    
+    const handleCopyClick = ()=>{
+        
+        navigator.clipboard.writeText(roomNo)
+    }
     return(
         <>
             <div className="flex flex-col">
-                <div className="h-[20vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black">
+                <div className="h-[15vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black flex flex-col">
                     <h1 className="font-montserrat font-black text-3xl text-white m-4" >
                         Whisper.io
                     </h1>
+                    <div className="h-8 w-[95%] bg-[#191919] border border-[#D3D3D3] border-opacity-40 rounded-lg mx-4 mb-2 flex justify-between items-center">
+                        <h1 className="font-montserrat text-gray-500 ">
+                            RoomID  :  {roomNo}
+                                
+                            
+                        </h1>
+                    
+                    <div onClick={handleCopyClick} className="hover:bg-black p-1 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>
+                    </div>
+                    </div>
                 </div>
 
                 <div ref={chatContainerRef}
-                 className="h-[55vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black overflow-y-auto">
+                 className="h-[60vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black overflow-y-auto">
                     <div className="m-6 flex flex-col">
                     
                     {
