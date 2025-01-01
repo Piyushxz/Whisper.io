@@ -36,7 +36,7 @@ export const CreateRoomComponent = ()=>{
     
     return(
         <>
-            <div className="w-[700px]  bg-[#191919] border border-[#D3D3D3] border-opacity-40 rounded-lg">
+            <div className="w-[95vw] md:w-[700px] bg-[#191919] border border-[#D3D3D3] border-opacity-40 rounded-lg">
                 <div className="flex flex-col justify-center">
                 <h1 className="font-montserrat font-black text-3xl text-white m-4" >
                         Whisper.io
@@ -62,14 +62,17 @@ export const CreateRoomComponent = ()=>{
 
                 <div className="flex m-4 justify-between mt-8 flex-col gap-4">
                 <input ref={userRef}
-                 type="text" placeholder="Enter Username" className="w-[90vh] h-12 bg-black  text-white  border border-[#D3D3D3] border-opacity-40 rounded-lg"/>
+                 type="text" placeholder="Enter Username" className="w-[90vw] md:w-[650px] h-12 bg-black  text-white  border border-[#D3D3D3] border-opacity-40 rounded-lg"/>
                 <div>
-                <input ref={inputRef}
-                 type="text" placeholder="Enter Room ID" className="w-4/5 h-12 bg-black  text-white  border border-[#D3D3D3] border-opacity-40 rounded-lg"/>
-                <button onClick={hanldeJoinRoom}
-                className="bg-black text-white px-4 py-2 rounded-lg  border border-[#D3D3D3] border-opacity-40 ml-4 hover:bg-gray-800 transition-all ease-in-out duration-500">
-                    Join Room
-                </button>
+                <div className="flex gap-2">
+                    <input ref={inputRef}
+                    type="text" placeholder="Enter Room ID" className="w-[70vw] h-12 bg-black  text-white  border border-[#D3D3D3] border-opacity-40 rounded-lg"/>
+                    <button onClick={hanldeJoinRoom}
+                    className="bg-black text-white px-4 py-2 rounded-lg  border border-[#D3D3D3] border-opacity-40 ml-4 hover:bg-gray-800 transition-all ease-in-out duration-500">
+                        Join Room
+                    </button>
+                </div>
+
                 </div>
 
             </div>

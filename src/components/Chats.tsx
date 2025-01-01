@@ -58,12 +58,12 @@ export const Chats = ()=>{
     }
     return(
         <>
-            <div className="flex flex-col">
+            <div className="flex flex-col ">
                 <div className="h-[15vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black flex flex-col">
                     <h1 className="font-montserrat font-black text-3xl text-white m-4" >
                         Whisper.io
                     </h1>
-                    <div className="h-8 w-[95%] bg-[#191919] border border-[#D3D3D3] border-opacity-40 rounded-lg mx-4 mb-2 flex justify-between items-center">
+                    <div className="h-6 md:h-8 w-[95%] bg-[#191919] border border-[#D3D3D3] border-opacity-40 rounded-lg mx-4 mb-2 flex justify-between items-center">
                         <h1 className="font-montserrat text-gray-500 ">
                             RoomID  :  {roomNo}
                                 
@@ -80,21 +80,15 @@ export const Chats = ()=>{
                  className="h-[60vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-black overflow-y-auto">
                     <div className="m-6 flex flex-col">
                     
-                    {
-                        messages.map(({message,sentBy})=>
-                        sentBy === currentUser ?
-                        <div>
-                            <ChatBubble text={message} variant="user" username={sentBy}/>
-
+                                        {messages.map(({ message, sentBy }) => (
+                        <div className="">
+                            <ChatBubble
+                            text={message}
+                            variant={sentBy === currentUser ? "user" : "sender"}
+                            username={sentBy}
+                            />
                         </div>
-                        :
-                        <div>
-                            <ChatBubble text={message} variant="sender" username={sentBy}/>
-
-                        </div>
-                        )
-                    }
-
+                        ))}
                     </div>
                 </div>
             </div>
