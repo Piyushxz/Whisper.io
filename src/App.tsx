@@ -9,7 +9,7 @@ function App() {
   const roomEntered = useRecoilValue(isRoomEntered)
   return (
     <>
-      <div className='h-screen bg-black flex justify-center items-center'>
+      <div className='h-screen bg-black flex justify-center items-center w-full'>
         {
           roomEntered ? <Chatbox/> :<CreateRoomComponent/>
         }

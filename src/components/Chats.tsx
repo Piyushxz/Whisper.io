@@ -84,12 +84,12 @@ export const Chats = ()=>{
                         messages.map(({message,sentBy})=>
                         sentBy === currentUser ?
                         <div>
-                            <ChatBubble text={message} variant="user"/>
+                            <ChatBubble text={message} variant="user" username={sentBy}/>
 
                         </div>
                         :
                         <div>
-                            <ChatBubble text={message} variant="sender"/>
+                            <ChatBubble text={message} variant="sender" username={sentBy}/>
 
                         </div>
                         )
