@@ -17,7 +17,7 @@ export const Home = ()=>{
             <div className="flex justify-center mt-20 text-center  ">
                 <div className="flex flex-col gap-2 border border-black border-opacity-20 p-4 rounded-lg w-[80vw] ">
                 <h1  
-                className="font-manrope tracking-tighter text-4xl md:text-6xl font-black text-white ">This is a Anonymous Chat room </h1>
+                className="font-manrope tracking-tighter text-3xl md:text-6xl font-black text-white ">This is a Anonymous Chat room </h1>
 
                 <h1 className="tracking-tighter font-manrope text-xl md:text-2xl font-black  text-white text-center ">Chat secretly with your friends ,</h1>
 
