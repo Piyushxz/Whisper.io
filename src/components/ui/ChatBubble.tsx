@@ -6,7 +6,7 @@ interface ChatBubbleProps {
   }
   
   const ChatBubbleStyles = {
-    user: " bg-[#0866ff] text-white",
+    user: " bg-primaryPink text-white",
     sender: " bg-white text-black ",
   };
 

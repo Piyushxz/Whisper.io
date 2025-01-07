@@ -8,7 +8,11 @@ export default {
     extend: {
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
       },
+      colors:{
+        primaryPink:"#FF69B4"
+      }
     },
   },
   plugins: [],

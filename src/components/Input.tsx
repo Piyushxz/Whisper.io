@@ -21,7 +21,7 @@ export const Input = () =>{
 
     return(
         <>  
-            <div className="flex mt-2">
+            <div className="flex mt-2 ">
                 <input ref={inputRef} onKeyDown={(e)=>e.key==="Enter" ? handleSendMessage() : null}
                  type="text" placeholder="Enter a Message..." className="w-4/5 h-12 bg-black ml-4 text-white  border border-[#D3D3D3] border-opacity-40 rounded-lg"/>
                 <button onClick={handleSendMessage}
