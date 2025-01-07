@@ -3,8 +3,8 @@ import { isRoomEntered } from "./atoms"
 import { useRecoilValue } from "recoil"
 import { CreateRoomComponent } from "./components/CreateRoomComponent"
 import { Route, Routes } from "react-router-dom"
-import { Home } from "./pages/home"
 import { Toaster } from "sonner"
+import { Home } from "./pages/home"
 function App() {
 
 

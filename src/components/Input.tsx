@@ -1,6 +1,7 @@
 import { useRecoilValue } from "recoil"
 import { activeUser, wsState } from "../atoms"
 import { useRef } from "react"
+import { toast } from "sonner"
 
 export const Input = () =>{
     const inputRef = useRef<HTMLInputElement>(null)
@@ -8,15 +9,21 @@ export const Input = () =>{
     const wsVal = useRecoilValue(wsState)
     const handleSendMessage = () =>{
 
-        wsVal?.send(JSON.stringify({
-            type:"chat",
-            payload:{
-                message:inputRef.current?.value,
-                sentBy:currentUser
-            }
-        }))
-        //@ts-ignore
-        inputRef.current.value="";
+        if(inputRef.current)
+        if(inputRef.current?.value.length > 0){
+            wsVal?.send(JSON.stringify({
+                type:"chat",
+                payload:{
+                    message:inputRef.current?.value,
+                    sentBy:currentUser
+                }
+            }))
+            //@ts-ignore
+            inputRef.current.value="";
+        }else{
+            toast.error("Message too small")
+        }
+
     }
 
     return(
