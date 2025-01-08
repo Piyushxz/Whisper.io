@@ -9,9 +9,9 @@ export const Chatbox = () =>{
                 transition={{
                   duration: 0.4,
                   ease: "easeInOut",}}>
-            <div className="md:w-[600px] w-[90vw] h-[90vh] bg-[#191919] shadow-inner rounded-lg border border-[#D3D3D3] border-opacity-40 ">
+            <div className="md:w-[600px] w-[90vw] h-[90vh]  shadow-inner rounded-lg border border-white">
                 <div className="flex flex-col h-full ">
-                    <div className="h-[90vh]  border-b border-[#D3D3D3] border-opacity-40  ">
+                    <div className="h-[90vh]  border-b border-white   ">
                         <Chats/>
                     </div>
                     <div className="h-[10vh] ">

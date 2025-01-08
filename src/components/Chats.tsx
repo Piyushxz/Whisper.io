@@ -62,7 +62,7 @@ export const Chats = ()=>{
     return(
         <>
             <div className="flex flex-col ">
-                <div className="h-[15vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg bg-primaryPink flex flex-col">
+                <div className="h-[15vh]  my-2 mx-4 border border-white border-opacity-40 rounded-lg bg-primaryPink flex flex-col">
                     <h1 className="font-manrope tracking-tighter font-black  text-3xl text-white m-4" >
                         Whisper.io
                     </h1>
