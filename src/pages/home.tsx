@@ -11,16 +11,15 @@ export const Home = () => {
     <div className="h-screen w-full">
       <Navbar />
 
-      {/* Intro Animation */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.4,
+          duration: 0.5,
           ease: "easeInOut",
         }}
       >
-        <div className="flex justify-center mt-[200px] text-center">
+        <div className="flex justify-center mt-24 text-center">
           <div className="flex flex-col gap-2 border border-black border-opacity-20 p-4 rounded-lg w-[80vw]">
             <h1 className="font-manrope tracking-tighter text-3xl md:text-6xl font-black text-white">
               This is an Anonymous Chat Room
@@ -37,7 +36,7 @@ export const Home = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.5,
+          duration: 0.8,
           ease: "easeInOut",
         }}
         className="flex justify-center mt-4"

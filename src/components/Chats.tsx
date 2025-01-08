@@ -62,11 +62,11 @@ export const Chats = ()=>{
     return(
         <>
             <div className="flex flex-col ">
-                <div className="h-[15vh]  my-2 mx-4 border border-white border-opacity-40 rounded-lg bg-primaryPink flex flex-col">
+                <div className="h-[15vh]  my-2 mx-4 border border-white  rounded-lg bg-primaryPink flex flex-col">
                     <h1 className="font-manrope tracking-tighter font-black  text-3xl text-white m-4" >
                         Whisper.io
                     </h1>
-                    <div className="h-6 md:h-8 w-[95%] bg-white border border-[#D3D3D3] border-opacity-40 rounded-lg mx-4 mb-2 flex justify-between items-center">
+                    <div className="h-6 md:h-8 w-[95%] bg-white border border-white rounded-lg mx-4 mb-2 flex justify-between items-center">
                         <h1 className="font-montserrat texting-tigther text-black">
                             RoomID  :  {roomNo}
                                 
@@ -80,7 +80,7 @@ export const Chats = ()=>{
                 </div>
 
                 <div ref={chatContainerRef}
-                 className="h-[60vh]  my-2 mx-4 border border-[#D3D3D3] border-opacity-40 rounded-lg overflow-y-auto">
+                 className="h-[60vh]  my-2 mx-4 border border-white rounded-lg overflow-y-auto">
                     <div className="m-6 flex flex-col">
                     
                                         {messages.map(({ message, sentBy }) => (
